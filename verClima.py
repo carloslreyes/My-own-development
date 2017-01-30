@@ -3,7 +3,7 @@
 
 import json, requests, sys
 
-print('Please enter the city name:')
+print('Favor entre el nombre de la ciudad:')
 
 ciudad = input()
 newCiudad = ciudad.title()
