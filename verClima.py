@@ -3,7 +3,7 @@
 
 import json, requests, sys
 
-print('Consultando la ciudad en VerTemperatura.py')
+print('Please enter the city name:')
 
 ciudad = input()
 newCiudad = ciudad.title()
@@ -20,15 +20,22 @@ result.raise_for_status()
 
 datosTemperatura = json.loads(result.text)
 
-
 # Descipción de la Temperura
 
 C = datosTemperatura['list']
 print('Clima en %s: ' % (newCiudad))
-print(C[0]['weather'][0]['main'], '|', C[0]['weather'][0]['description'])
+
+
+# Función para convertir la Temp a C°
+
+def tempInC(valor):
+    return str(round(int(valor) - 273.15))
+
+print('C° =',tempInC(C[1]['main']['temp']),'|',C[0]['weather'][0]['main'], '|', C[0]['weather'][0]['description'])
 print()
 print('Temperatura para mañana: ')
-print(C[1]['weather'][0]['main'], '|', C[1]['weather'][0]['description'])
+print('Cº =',tempInC(C[1]['main']['temp']),'|',C[1]['weather'][0]['main'], '|', C[1]['weather'][0]['description'])
 print()
 print('Temperatura para pasado mañana: ')
-print(C[2]['weather'][0]['main'], '|', C[2]['weather'][0]['description'])
+print('Cº =',tempInC(C[2]['main']['temp']),'|',C[2]['weather'][0]['main'], '|', C[2]['weather'][0]['description'])
+
